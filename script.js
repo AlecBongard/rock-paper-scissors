@@ -15,16 +15,31 @@ let count = 0;
 rock.addEventListener('click', () => {
     computerChoice = getComputerChoice();
     game(playRound("rock", computerChoice), "rock", computerChoice);
+
+    rock.classList.add('clicked')
+    rock.addEventListener('transitionend', ()=>{
+        rock.classList.remove('clicked');
+    });
 });
 
 paper.addEventListener('click', () => {
     computerChoice = getComputerChoice();
     game(playRound("paper", computerChoice), "paper", computerChoice);
+
+    paper.classList.add('clicked')
+    paper.addEventListener('transitionend', ()=>{
+        paper.classList.remove('clicked');
+    });
 });
 
 scissors.addEventListener('click', () => {
     computerChoice = getComputerChoice();
     game(playRound("scissors", computerChoice), "scissors", computerChoice);
+
+    scissors.classList.add('clicked')
+    scissors.addEventListener('transitionend', ()=>{
+        scissors.classList.remove('clicked');
+    });
 });
 
 
@@ -89,10 +104,11 @@ function game(winner, playerChoice, computerChoice){
             final.textContent = "You lose the game";
         }
     
-        finalScore.textContent = `You won ${wins} games, lost ${losses} games, and drew ${draws} games.`
+        finalScore.textContent = `You won ${wins} rounds, lost ${losses} rounds, and drew ${draws} rounds.`
         score = wins = losses = draws = 0;
     } else{
         final.textContent = '';
+        finalScore.textContent = '';
     }
 }
 

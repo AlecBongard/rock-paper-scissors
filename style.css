@@ -1,0 +1,54 @@
+body{
+    display:flex;
+    justify-content: center;
+    background-color: #272727;
+    font-family: 'Noto Sans Mono';
+    color: #272727;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: coral;
+    border-width: 5px;
+    border-color: rgb(217, 69, 67);
+    border-style: solid;
+    height:300px;
+    width:500px;
+    margin-top: 200px;
+}
+
+.buttons{
+    margin: 25px 0px;
+}
+
+.info{
+    height: 100px;
+    text-align: center;
+}
+
+.info p{
+    margin: 5px;
+}
+
+
+button{
+    font-family: 'Noto Sans Mono';
+    background-color: rgb(217, 69, 67);
+    width: 100px;
+    height: 50px;
+    margin: 0px 15px;
+    border:none;
+}
+
+button:hover{
+    border: 1px solid;
+    border-color: black;
+}
+
+.clicked{
+    transition: all .07s ease;
+    transform: scale(1.05);
+}
