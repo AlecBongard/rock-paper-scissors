@@ -1,4 +1,35 @@
-game();
+const rock = document.querySelector('#rock');
+const paper = document.querySelector('#paper');
+const scissors = document.querySelector('#scissors');
+const results = document.querySelector("#round");
+const final = document.querySelector("#game");
+const finalScore = document.querySelector('#score');
+
+let running = 0;
+let wins = 0;
+let losses = 0;
+let draws = 0;
+let score = 0;
+let count = 0;
+
+rock.addEventListener('click', () => {
+    computerChoice = getComputerChoice();
+    game(playRound("rock", computerChoice), "rock", computerChoice);
+});
+
+paper.addEventListener('click', () => {
+    computerChoice = getComputerChoice();
+    game(playRound("paper", computerChoice), "paper", computerChoice);
+});
+
+scissors.addEventListener('click', () => {
+    computerChoice = getComputerChoice();
+    game(playRound("scissors", computerChoice), "scissors", computerChoice);
+});
+
+
+
+//game();
 
 function getComputerChoice(){
     let choice = randomThree();
@@ -31,38 +62,38 @@ function playRound(playerSelection, computerSelection){
     }
 }
 
-function game(){
-    let score = 0;
-    let wins = 0;
-    let losses = 0;
-    let draws = 0;
-
-    for (let i = 0; i < 5; i++){
-        let playerChoice = prompt("Choose \"Rock\", \"Paper\", or \"Scissors\".");
-
-        let computerChoice = getComputerChoice();
-        let winner = playRound(playerChoice, computerChoice);
-        score += winner;
-
-        if (winner === 0){
-            console.log("It's a draw!");
-            draws++;
-        } else if(winner === -1){
-            console.log(`You lose! ${computerChoice} beats ${playerChoice}!`);
-            losses++;
-        } else{
-            console.log(`You win! ${playerChoice} beats ${computerChoice}!`);
-            wins++;
-        }
-    }
-
-    if(score === 0){
-        console.log("The game is a draw!");
-    } else if(score > 0){
-        console.log("You win the game!");
+function game(winner, playerChoice, computerChoice){
+    count++;
+    score += winner;
+    if (winner === 0){
+        results.textContent = "It's a draw!";
+        draws++;
+    } else if(winner === -1){
+        results.textContent = `You lose! ${computerChoice} beats ${playerChoice}!`;
+        console.log("loss");
+        losses++;
     } else{
-        console.log("You lose the game");
+        results.textContent = `You win! ${playerChoice} beats ${computerChoice}!`;
+        wins++;
     }
 
-    console.log(`You won ${wins} games, lost ${losses} games, and drew ${draws} games.`)
+    
+    if (count === 5){
+        count = 0;
+        
+        if(score === 0){
+            final.textContent = "The game is a draw!";
+        } else if(score > 0){
+            final.textContent = "You win the game!";
+        } else{
+            final.textContent = "You lose the game";
+        }
+    
+        finalScore.textContent = `You won ${wins} games, lost ${losses} games, and drew ${draws} games.`
+        score = wins = losses = draws = 0;
+    } else{
+        final.textContent = '';
+    }
 }
+
+
